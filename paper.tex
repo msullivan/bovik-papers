@@ -1,0 +1,70 @@
+\documentclass[preprint]{sigplanconf}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black]%
+{hyperref}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+
+\newcommand{\prettybox}[1]{\fbox{\parbox{\linewidth}{#1}}}
+\newenvironment{smallverbatim}{\endgraf\small\verbatim}{\endverbatim} 
+\renewcommand{\t}{\texttt}
+\renewcommand{\b}{\textbf}
+\renewcommand{\i}{\textit}
+
+\lstset{
+  language=Haskell,
+  basicstyle=\small\ttfamily,
+  frame=trbl,
+  basewidth={0.5em,0.45em},
+  commentstyle=\ttfamily\color{ForestGreen},
+  literate=*{+}{{$+$}}1 {/}{{$/$}}1 {*}{{$*$}}1 {=}{{$=$}}1
+            {>}{{$>$}}1 {<}{{$<$}}1 {\\}{{$\lambda$}}1
+            {\\\\}{{\char`\\\char`\\}}1
+            {->}{{$\rightarrow$}}2 {>=}{{$\geq$}}2 {<-}{{$\leftarrow$}}2
+            {<=}{{$\leq$}}2 {=>}{{$\Rightarrow$}}2
+            %{\ .}{{$\circ$}}2 {\ .\ }{{$\circ$}}2
+            {>>}{{>>}}2 {>>=}{{>>=}}2
+            {|}{{$\mid$}}1
+}
+%\lstnewenvironment{code}{\lstset{frame=}}{}
+\newenvironment{code}{\endgraf\small\verbatim}{\endverbatim} 
+
+\title{The Spineless Tagless Tweet Machine}
+\subtitle{Distributed Cloud-Based Social Crowdsourced Lazy Graph Reduction on the Web 2.0}
+\authorinfo{Michael Sullivan}{Carnegie Mellon University}{mjsulliv@cs.cmu.edu}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+
+Over the last few decades, there has been a large amount of work
+discussing methods for efficient implementation of non-strict
+functional programming languages \cite{Jones92implementinglazy}
+\cite{Naylor:2010:RR:1932681.1863556}. One traditional method of
+implementing non-strict evaluation is lazy graph reduction. A much
+touted benefit of non-strict, pure functional languages is that
+computations can be easily parallelized without worrying about
+concurrency issues.
+
+We propose that the lazy graph reduction model combines well with a
+number of other major recent developments in the computing world: the
+emergence of cloud computing and the social web. Cloud computing
+refers to the offloading of computation and storage to unaccountable
+and untrusted software-as-a-service providers, while the social web
+refers to the ``sharing'' of statuses, photographs, personal
+information, and other data with friends, acquaintances, and enemies
+(frequently in the form of ``frenemies'') through the Web.
+
+
+
+\end{abstract}
+
+\section{Introduction}
+
+
+\bibliography{citations}{}
+\bibliographystyle{abbrvnat}
+
+\end{document}
