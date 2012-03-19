@@ -2,7 +2,7 @@
 
 all: paper.pdf
 
-paper.pdf: paper.tex citations.bib
+paper.pdf: paper.tex citations.bib sigplanconf.cls
 	pdflatex $< && bibtex paper && pdflatex $< && pdflatex $< 
 
 clean:

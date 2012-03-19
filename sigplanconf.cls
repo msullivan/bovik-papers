@@ -599,20 +599,14 @@
   \noindent \@permission \par
   \vspace{2pt}
   \noindent \textsl{\@conferencename}\quad \@conferenceinfo \par
-  \noindent Copyright \copyright\ \@copyrightyear\ ACM \@copyrightdata
+  \noindent Copyright \copyright\ \@copyrightyear\ ACH \@copyrightdata
     \dots \@reprintprice\par}
 
 \newcommand{\permission}[1]{%
   \gdef \@permission {#1}}
 
 \permission{%
-  Permission to make digital or hard copies of all or
-  part of this work for personal or classroom use is granted without
-  fee provided that copies are not made or distributed for profit or
-  commercial advantage and that copies bear this notice and the full
-  citation on the first page.  To copy otherwise, to republish, to
-  post on servers or to redistribute to lists, requires prior specific
-  permission and/or a fee.}
+We're no strangers to love. You know the rules and so do I. A full commitment's what I'm thinking of. You wouldn't get this from any other guy. I just wanna tell you how I'm feeling. Gotta make you understand. Never gonna give you up. Never gonna let you down. Never gonna run around and desert you. Never gonna make you cry. Never gonna say goodbye. Never gonna tell a lie and hurt you. We've known each other for so long. Your heart's been aching but. You're too shy to say it. Inside we both know what's been going on. We know the game and we're gonna play it. And if you ask me how I'm feeling. Don't tell me you're too blind to see. Never gonna give you up. Never gonna let you down. Never gonna run around and desert you. Never gonna make you cry. Never gonna say goodbye. Never gonna tell a lie and hurt you.}
 
 % Here we have some alternate permission statements and copyright lines:
 
@@ -669,7 +663,7 @@
 \newcommand{\reprintprice}[1]{%
   \gdef \@reprintprice {#1}}
 
-\reprintprice{\$10.00}
+\reprintprice{NaN BTC}
 
 \newcommand{\authorversion}[4]{%
   \permission{%
