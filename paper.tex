@@ -38,13 +38,21 @@
 \maketitle
 
 \begin{abstract}
+Lazy graph reduction is a common technique for implementing non-strict
+functional programming languages.
+We present the Spineless Tagless Tweet Machine, a distributed lazy
+graph reduction system that uses Twitter to communicate and store
+unevaluated expressions.
+\end{abstract}
 
+\section{Introduction}
 Over the last few decades, there has been a large amount of work
 discussing methods for efficient implementation of non-strict
 functional programming languages \cite{Jones92implementinglazy}
-\cite{Naylor:2010:RR:1932681.1863556}. One traditional method of
-implementing non-strict evaluation is lazy graph reduction. A much
-touted benefit of non-strict, pure functional languages is that
+\cite{Naylor:2010:RR:1932681.1863556}. 
+%One traditional method of implementing non-strict evaluation is lazy
+%graph reduction.
+A much touted benefit of non-strict, pure functional languages is that
 computations can be easily parallelized without worrying about
 concurrency issues.
 
@@ -55,13 +63,80 @@ refers to the offloading of computation and storage to unaccountable
 and untrusted software-as-a-service providers, while the social web
 refers to the ``sharing'' of statuses, photographs, personal
 information, and other data with friends, acquaintances, and enemies
-(frequently in the form of ``frenemies'') through the Web.
+(frequently in the form of ``frenemies'') through the Web.  One of the
+most popular cloud applications on the social web is Twitter
+\cite{twitter}, which allows users to publish 140-character ``tweets''
+(which include images), search for tweets by ``hashtags'', and other
+such ``social'' activities.
+
+Our proposal is to take advantage of of the parallelizability of lazy
+pure functional programs by using the tools of cloud computation and
+the social web.  We present the Spineless Tagless Tweet Machine, a
+distributed lazy graph reduction system that uses Twitter to share
+unevaluated expressions with the user's friends, acquaintances, and
+frenemies.
+
+\section{Description}
+
+Lazy computation is generally implemented by creating ``thunks''
+containing computations that might be needed later and evaluating the
+thunks (or ``pulling on'' them) only when the result is
+needed. Pulling on a thunk may involve creating new thunks
+representing computations for subparts of the value computed.
+
+The Spineless Tagless Tweet Machine evaluates a internal language
+called \t{STTM}. The \t{STTM} is an austere untyped internal language
+with support for lazy evaluation. \t{STTM} is essential a more
+syntactically restricted variant of the untyped lambda calculus.
+Algebraic data-types are represented
+using the Scott encoding; that is, as functions that take case
+functions for each of their branches and then call the matching one.
+Integers and integer operations are included in the language for
+efficiency.
+
+In the Spineless Tagless Tweet Machine model, interested users run
+Spineless Tagless Tweet Machine computation nodes on their
+machines. These nodes monitor twitter for \t{STTM} tweets containing
+unevaluated thunks and upon seeing them may choose to do some
+evaluation of them and tweet the results. This may involve creating
+additional thunks. Note that this does not necessarily need to been
+done by the \t{STTM} software: individual users should feel encouraged
+to evaluate thunks by hand and tweet the results, allowing a
+crowd-sourced graph reduction.
+
+Each unevaluated expression will be associated with a unique
+hash-tag \footnote{For this reason, ``tagless'' is
+  inaccurate. ``Spineless'' also is inaccurate.}  To pull on thunks, a
+client searches for tweets with the appropriate hashtag, in order to
+find an evaluated version. (This search may need to be repeated until
+the thunk has been evaluated.) Since the size of expressions is likely
+to exceed the strict 140-character limit, expressions will be encoded
+as images and included with the tweets.
+
+\section{Characteristics}
+One major advantage of this system is that caching of results is
+provided by Twitter. If a computation has been performed before, the
+result will be immediately found when pulling on the thunk.
+
+Some potential downsides in this system are the potential weakness in
+privacy and correctness. The system provides no mechanism to assess
+the correctness of evaluated tweets or to hide tweets containing
+private computational data from unwanted observers. In practice, users
+of cloud and social services seem to not mind these limitations.
+
+Deciding which tweets should be evaluated remains a major open problem
+in this work. Only evaluating tweets that are directly needed fails to
+gain any parallelism, while evaluating all tweets will result in
+chasing down infinite data structures and rapidly being rate-limited
+by Twitter.
 
 
-
-\end{abstract}
-
-\section{Introduction}
+\section{Conclusion}
+In this paper, we presented a novel way to violate Twitter's Terms of
+Service \cite{twitterTOS} by using it as the communication medium and
+backing store for distributed lazy graph reduction.
+We would have evaluated the performance, but will be implementing the
+system sometime between now and the conference.
 
 
 \bibliography{citations}{}
